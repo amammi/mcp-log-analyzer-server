@@ -1,0 +1,20 @@
+[project]
+name = "mcp-log-analyzer-server"
+version = "0.1.0"
+description = "An MCP Server for analyzing logs of a FastAPI app in Docker containers"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "autogen-agentchat>=0.6.1",
+    "autogen-ext[mcp]>=0.6.1",
+    "click>=8.1.8",
+    "docker>=7.1.0",
+    "fastapi>=0.115.14",
+    "fastmcp>=2.10.1",
+    "gradio>=5.35.0",
+    "mcp[cli]>=1.10.1",
+    "ollama>=0.5.1",
+    "openai>=1.93.0",
+    "pyautogen>=0.9",
+    "uvicorn>=0.34.3",
+]
