@@ -5,9 +5,11 @@ description = "An MCP Server for analyzing logs of a FastAPI app in Docker conta
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "anthropic>=0.57.1",
     "autogen-agentchat>=0.6.1",
     "autogen-ext[mcp]>=0.6.1",
     "click>=8.1.8",
+    "django==5.2.4",
     "docker>=7.1.0",
     "fastapi>=0.115.14",
     "fastmcp>=2.10.1",
