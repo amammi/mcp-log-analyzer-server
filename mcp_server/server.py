@@ -4,7 +4,7 @@ import docker
 from typing import Literal
 from mcp.server.fastmcp import FastMCP
 
-mcp = FastMCP("MCP Docker Log Server")
+mcp = FastMCP("MCP Docker Log Server", port=8080)
 
 
 
@@ -82,7 +82,7 @@ Key Responsibilities:
 Retrieve and analyze Docker container logs, identify and analyze log lines of the user-specified level. 
 For each DEBUG or INFO level logs, for each one give a proper analysis of the log.
 For each ERROR level logs, reformat in a proper way the logs, dividing each error log (with stacktrace) and for each ones analyze the entire stacktrace and identify the source of the error. 
-Repeat this process for 
+Repeat this process for all lines of the log level selected.
 Provide also an in-depth and conversational diagnoses of errors found.
 
 Analysis Guidelines:
