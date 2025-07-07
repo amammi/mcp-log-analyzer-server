@@ -60,7 +60,7 @@ def analyze_logs_api(request):
         })
         
     except json.JSONDecodeError:
-        return JsonResponse({'error': 'Dati JSON non validi'}, status=400)
+        return JsonResponse({'error': 'Dati richiesta non validi'}, status=400)
     except Exception as e:
         logger.exception(e, exc_info=True)
         return JsonResponse({'error': str(e)}, status=500)
