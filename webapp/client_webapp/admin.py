@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import ProviderModel, SelectionParam
+from .models import ProviderModel, SelectionParam, McpServerConfig
+
 
 # Register your models here.
 
@@ -13,4 +14,10 @@ class SelectionParamSetting(admin.ModelAdmin):
         """Di questo ModelAdmin è permessa una sola istanza."""
         return not SelectionParam.objects.exists()
 
-    pass
+
+@admin.register(McpServerConfig)
+class McpServerConfigSetting(admin.ModelAdmin):
+    # TODO support for multi mcp servers
+    def has_add_permission(self, request):
+        """Di questo ModelAdmin è permessa una sola istanza."""
+        return not McpServerConfig.objects.exists()
