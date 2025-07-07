@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  mcp_server:
+      build: mcp_server/.
+      ports:
+        - "8080:8080"
+      volumes:
+        - /var/run/docker.sock:/var/run/docker.sock
+
+  application:
+      build: app/.
+      ports:
+        - "8050:8050"
+
+  django_webapp:
+      build:
+        dockerfile: webapp/Dockerfile
+        args:
+          # ENV vars for Django superuser, made your changes here if you want to personalize them.
+          SU_USERNAME: admin
+          SU_EMAIL: test@test.test # for testing only!!!
+          SU_PASSWORD: admin # for testing only!!!
+      ports:
+        - "8000:8000"
+      volumes:
+        - /var/run/docker.sock:/var/run/docker.sock
+      depends_on:
+        - mcp_server
