@@ -1,5 +1,6 @@
 import os
 import asyncio
+import logging
 
 from autogen_agentchat.agents import AssistantAgent
 from autogen_ext.models.ollama import OllamaChatCompletionClient
@@ -13,6 +14,7 @@ from client_webapp.models import McpServerConfig
 
 loop = asyncio.new_event_loop()
 asyncio.set_event_loop(loop=loop)
+logger = logging.getLogger(__name__)
 
 
 class LogAnalyzerAgentWrapper:
@@ -34,7 +36,7 @@ class LogAnalyzerAgentWrapper:
         base_url = base_url or os.getenv("CUSTOM_MODEL_BASE_URL")
         match provider:
             case 'ollama':
-                model_client = OllamaChatCompletionClient(host=base_url if base_url is None else base_url, model=model)
+                model_client = OllamaChatCompletionClient(host=base_url, model=model)
 
             case 'anthropic':
                 model_client = AnthropicChatCompletionClient(model=model, api_key=api_key, temperature=0.0)
@@ -47,7 +49,7 @@ class LogAnalyzerAgentWrapper:
         
         return model_client
     
-    async def _analyze(self, provider: str, model: str, container_name: str, log_level_choice: str, api_key: str = None, base_url: str = None) -> str:
+    async def _analyze(self, provider: str, model: str, container_name: str, log_level_choice: str, api_key: str = None, base_url: str = None) -> str | None:
 
         server_params = self.workbenches[0].server_params
         async with Client(server_params.url) as mcp_client :
@@ -55,9 +57,9 @@ class LogAnalyzerAgentWrapper:
             try:
                 system_message = (await mcp_client.get_prompt("assistant_system_message")).messages[0].content.text
             except Exception as e:
-                print("Errore tecnico nel recupero del system message dell'assistente. Per favore riprovare.")
-                print(str(e))
-                return
+                msg = "Errore tecnico nel recupero del system message dell'assistente. Per favore riprovare."
+                logger.error(msg)
+                raise RuntimeError(msg) from e
 
             assistant = AssistantAgent(
                 "log_analyzer",
@@ -72,8 +74,8 @@ class LogAnalyzerAgentWrapper:
             try:
                 task = (await mcp_client.get_prompt("resume_analyze_logs", {"container_name": container_name, "level": log_level_choice})).messages[0].content.text
             except Exception as e:
-                print("Errore tecnico nel recupero del task. Per favore riprovare.")
-                print(str(e))
-                return
+                msg = "Errore tecnico nel recupero del task. Per favore riprovare."
+                logger.error(msg)
+                raise RuntimeError(msg) from e
 
             return (await assistant.run(task=task)).messages[-1].content
