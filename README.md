@@ -131,10 +131,11 @@ info da selezionare per l'analisi dei log come:
 - nome del container da analizzare
 - Log level
 
-A destra troviamo invece troveremo la risposta del nostro LLM. 
+A destra invece troveremo la risposta del nostro LLM, dopo aver utilizzato gli opportuni tool del server MCP. 
 Di seguito un breve video sul funzionamento:
 
 
-[overview.webm](https://github.com/user-attachments/assets/c89c9b45-2a4c-45a8-80ef-039e7dd87f09)
+[output.webm](https://github.com/user-attachments/assets/1f1dd31c-a067-42bf-9835-303ac132ae74)
+
 
 
