@@ -134,8 +134,6 @@ info da selezionare per l'analisi dei log come:
 A destra troviamo invece troveremo la risposta del nostro LLM. 
 Di seguito un breve video sul funzionamento:
 
-<div align="center">
-  <video width="320" height="240" controls>
-    <source src="docs/assets/overview.mov" type="video/quicktime">
-  </video>
-</div>
+[![Demo client](docs/assets/homepage.png)](docs/assets/overview.mp4)
+
+
