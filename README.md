@@ -135,7 +135,7 @@ A destra troviamo invece troveremo la risposta del nostro LLM.
 Di seguito un breve video sul funzionamento:
 
 <video poster="/docs/assets/homepage.png">
-  <source src="/docs/assets/overview.mp4" type="video/mp4" />
+  <source src="/docs/assets/overview.mkv" type="video/mp4" />
 </video>
 
 
