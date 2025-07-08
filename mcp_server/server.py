@@ -12,6 +12,7 @@ mcp = FastMCP("MCP Docker Log Server", host="0.0.0.0", port=8080)
 logger = get_logger(__name__)
 
 @mcp.tool()
+@log_tool_call
 def get_all_containers():
     """Get a list of all running containers names"""
     try:
