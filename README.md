@@ -134,8 +134,7 @@ info da selezionare per l'analisi dei log come:
 A destra troviamo invece troveremo la risposta del nostro LLM. 
 Di seguito un breve video sul funzionamento:
 
-<video poster="/docs/assets/homepage.png">
-  <source src="/docs/assets/overview.mkv" type="video/mp4" />
-</video>
+
+[overview.webm](https://github.com/user-attachments/assets/c89c9b45-2a4c-45a8-80ef-039e7dd87f09)
 
 
