@@ -134,6 +134,8 @@ info da selezionare per l'analisi dei log come:
 A destra troviamo invece troveremo la risposta del nostro LLM. 
 Di seguito un breve video sul funzionamento:
 
-[![Demo client](docs/assets/homepage.png)](docs/assets/overview.mp4)
+<video poster="/docs/assets/homepage.png">
+  <source src="/docs/assets/overview.mp4" type="video/mp4" />
+</video>
 
 
