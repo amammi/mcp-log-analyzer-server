@@ -1,7 +1,7 @@
 # AI Log Analyzer
 ###### Analisi intelligente dei log container
 
-<div >
+<div align="center">
     <img src="/webapp/static/logo_v3.png" alt="drawing" width="500" style="display: block; margin: 0 auto"/>
 </div>
 
