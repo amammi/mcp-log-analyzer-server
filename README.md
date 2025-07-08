@@ -15,6 +15,7 @@ Questo repository contiene il codice sorgente del progetto finale del corso di P
 Il progetto punta alla costruzione di un Proof of Concept che riesca, dato il nome di un container docker, ad analizzare i log
 su diversi livelli dell'applicazione che vive dentro quel container attraverso l'utilizzo degli LLM e del protocollo MCP.
 
+
 Il progetto si compone di 3 moduli:
 
 - **mcp_server**: con all'interno il codice sorgente del server MCP che permette l'estrazione dei log dai container docker. Per costruire tale server MCP è stata utilizzata la libreria Python FastMCP.
