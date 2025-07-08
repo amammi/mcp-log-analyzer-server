@@ -2,7 +2,7 @@
 ###### Analisi intelligente dei log container
 
 <div align="center">
-    <img src="/webapp/static/logo_v3.png" alt="drawing" width="500" style="display: block; margin: 0 auto"/>
+    <img src="/webapp/static/logo_v3.png" alt="" width="500" style="display: block; margin: 0 auto"/>
 </div>
 
 <div>
@@ -89,7 +89,7 @@ Possibile scelta tra 3 diversi provider come Ollama, OpenAI e Anthropic. Di segu
 viene riportato l'esempio per OpenAI
 
 <div align="center">
-    <img src="/docs/assets/AddProviderModel.png" alt="drawing" width="500" style="display: block; margin: 0 auto"/>
+    <img src="/docs/assets/AddProviderModel.png" alt="" width="500" style="display: block; margin: 0 auto"/>
 </div>
 
 Per ogni provider model sarà necessario esplicitare:
@@ -100,17 +100,17 @@ Per ogni provider model sarà necessario esplicitare:
 - se si seleziona Ollama come provider bisogna valorizzare obbligatoriamente il campo **base url** con l'indirizzo del server ollama remoto, diversamente, 
 per gli altri provider questo campo non è necessario.
 
-2. Aggiungere un Selection Param: Per aggiungere un Selection Param, cliccare su "Add" nel menu a sinistra accanto alla relativa voce. Questo setting è usato per selezionare quale tra i provider models deve essere utilizzato dal sistema.
+2. Aggiungere un Selection Param: Questo setting è usato per selezionare quale tra i provider models deve essere utilizzato dal sistema. Per aggiungere un Selection Param, cliccare su "Add" nel menu a sinistra accanto alla relativa voce. 
 <div align="center">
-    <img src="/docs/assets/AddSelectionParams.png" alt="drawing" width="500" style="display: block; margin: 0 auto"/>
+    <img src="/docs/assets/AddSelectionParams.png" alt="" width="500" style="display: block; margin: 0 auto"/>
 </div>
 
-Sarà necessario semplicemente selezionare dal menu a tendina i provider model disponibili e lasciare attiva la spunta "is active" e salvare.
+Sarà necessario semplicemente selezionare dal menu a tendina i provider model disponibili, lasciare attiva la spunta "is active" e salvare.
 
 3. Configurare i dati dell'MCP server: Per aggiungere un MCP Server Config, cliccare su "Add" nel menu a sinistra accanto alla relativa voce.
 
 <div align="center">
-    <img src="/docs/assets/AddMCPServerConfig.png" alt="drawing" width="500" style="display: block; margin: 0 auto"/>
+    <img src="/docs/assets/AddMCPServerConfig.png" alt="" width="500" style="display: block; margin: 0 auto"/>
 </div>
 
 In questa schermata è necessario esplicitare un nome e l'url al quale è raggiungibile il nostro MCP Server.
@@ -118,3 +118,24 @@ Nel nostro caso, sarà necessario inserire l'indirizzo <code>http://host.docker.
 
 ## Utilizzo del client
 
+Terminata la configurazione, è ora possibile utilizzare il client. Per far ciò, è necessario da un browser collegarsi all'indirizzo
+<code>http://localhost:8000/client</code> ed in questo modo si verrà reindirizzati alla seguente schermata:
+
+<div align="center">
+    <img src="/docs/assets/homepage.png" alt="" width="500" style="display: block; margin: 0 auto"/>
+</div>
+
+Notiamo subito in alto a destra il numero dei container attivi, poi abbiamo l'area di sinistra dove sono presenti le 
+info da selezionare per l'analisi dei log come:
+
+- nome del container da analizzare
+- Log level
+
+A destra troviamo invece troveremo la risposta del nostro LLM. 
+Di seguito un breve video sul funzionamento:
+
+<div align="center">
+  <video width="320" height="240" controls>
+    <source src="docs/assets/overview.mov" type="video/quicktime">
+  </video>
+</div>
