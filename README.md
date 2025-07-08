@@ -12,6 +12,8 @@ Questo repository contiene il codice sorgente del progetto finale del corso di P
 
 ## Descrizione del progetto
 <div>
+Il progetto punta alla costruzione di un Proof of Concept che riesca, dato il nome di un container docker, ad analizzare i log
+su diversi livelli dell'applicazione che vive dentro quel container attraverso l'utilizzo degli LLM e del protocollo MCP.
 
 Il progetto si compone di 3 moduli:
 
