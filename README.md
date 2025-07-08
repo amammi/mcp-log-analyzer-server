@@ -16,11 +16,11 @@ Questo repository contiene il codice sorgente del progetto finale del corso di P
 Il progetto si compone di 3 moduli:
 
 - **mcp_server**: con all'interno il codice sorgente del server MCP che permette l'estrazione dei log dai container docker. Per costruire tale server MCP è stata utilizzata la libreria Python FastMCP.
-- **app**: una piccola FastAPI app costruita per generare log che alcuni dei tools presenti nel server dovranno estrarre su tre livelli:
+- **app**: una piccola FastAPI app costruita per generare log che alcuni dei tools presenti nel server MCP dovranno estrarre su tre livelli:
   - INFO
   - DEBUG
   - ERROR
-- **webapp**: una webapp Django con un frontend in React che funge da client verso l'utente finale, che sfrutta la combinazione LLM + MCP server per l'analisi dei log.
+- **webapp**: una webapp Django con un frontend in React che funge da client verso l'utente finale, che sfrutta la combinazione LLM + MCP server per l'analisi dei log dei container Docker.
 </div>
 
 ## Requisiti di sistema
@@ -42,7 +42,7 @@ fare la build delle immagini docker di tutti e tre moduli e successivamente avvi
 
 <div>
 
-Per farlo, sarà necessario posizionarsi nella root del progetto (la medesima di questo file README.md)
+Per fare entrambe le cose (build + run), sarà necessario posizionarsi nella root del progetto (la medesima di questo file README.md)
 e lanciare il comando:
 </div>
 
@@ -78,5 +78,40 @@ la **django_webapp**.
 
 ## Configurazione Django
 
+Prima di utilizzare il client vanno, nell'ordine, settate 3 configurazioni nel pannello di amministrazione di Django 
+(raggiungibile all'indirizzo: <code>http://localhost:8000/admin</code> con user e password di default admin:admin):
 
+1. Aggingere un Provider Model: Per aggiungere un Provider Model, cliccare su "Add" nel menu a sinistra accanto alla relativa voce. 
+Possibile scelta tra 3 diversi provider come Ollama, OpenAI e Anthropic. Di seguito 
+viene riportato l'esempio per OpenAI
+
+<div align="center">
+    <img src="/docs/assets/AddProviderModel.png" alt="drawing" width="500" style="display: block; margin: 0 auto"/>
+</div>
+
+Per ogni provider model sarà necessario esplicitare:
+
+- il provider
+- il modello di quel provider da utilizzare
+- la relativa API key (lasciare anche "ollama" che appare di default se il provider scelto è Ollama)
+- se si seleziona Ollama come provider bisogna valorizzare obbligatoriamente il campo **base url** con l'indirizzo del server ollama remoto, diversamente, 
+per gli altri provider questo campo non è necessario.
+
+2. Aggiungere un Selection Param: Per aggiungere un Selection Param, cliccare su "Add" nel menu a sinistra accanto alla relativa voce. Questo setting è usato per selezionare quale tra i provider models deve essere utilizzato dal sistema.
+<div align="center">
+    <img src="/docs/assets/AddSelectionParams.png" alt="drawing" width="500" style="display: block; margin: 0 auto"/>
+</div>
+
+Sarà necessario semplicemente selezionare dal menu a tendina i provider model disponibili e lasciare attiva la spunta "is active" e salvare.
+
+3. Configurare i dati dell'MCP server: Per aggiungere un MCP Server Config, cliccare su "Add" nel menu a sinistra accanto alla relativa voce.
+
+<div align="center">
+    <img src="/docs/assets/AddMCPServerConfig.png" alt="drawing" width="500" style="display: block; margin: 0 auto"/>
+</div>
+
+In questa schermata è necessario esplicitare un nome e l'url al quale è raggiungibile il nostro MCP Server.
+Nel nostro caso, sarà necessario inserire l'indirizzo <code>http://host.docker.internal:8080</code>
+
+## Utilizzo del client
 
