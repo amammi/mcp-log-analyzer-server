@@ -1,0 +1,20 @@
+{% extends "admin/app_index.html" %}
+{% load static %}
+
+
+{% block extrahead %}
+    <link rel="shortcut icon" href="/static/favicon.ico"/>
+{% endblock %}
+
+{% block title %}{{ site_title|default:_('Django site admin') }}{% endblock %}
+
+{% block branding %}
+<h1 id="site-name">
+    <a href="{% url 'admin:index' %}">
+        <img src="{% static 'logo_v3.png' %}" height="70px"/>
+        <span style="padding-left: 12px; color: white">Admin Panel</span>
+    </a>
+</h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
