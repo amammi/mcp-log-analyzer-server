@@ -6,6 +6,7 @@ class ProviderModel(models.Model):
     model_name = models.CharField(default="gpt-4.1-mini")
     api_key = models.CharField(default="ollama")
     base_url = models.URLField(blank=True, default=None)
+    is_active = models.BooleanField(default=None, unique=True, null=True)
 
     def __str__(self):
         return f"{self.model_provider_id} - {self.model_name}"
@@ -18,11 +19,3 @@ class McpServerConfig(models.Model):
 
     def __str__(self):
         return self.name
-
-
-class SelectionParam(models.Model):
-    provider_selection = models.ForeignKey(ProviderModel, on_delete=models.PROTECT)
-    is_active = models.BooleanField(default=True)
-
-    def __str__(self):
-        return f"{self.provider_selection} - ACTIVE"

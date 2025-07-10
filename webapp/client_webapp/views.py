@@ -5,7 +5,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_http_methods
 
 from client.agent import LogAnalyzerAgentWrapper
-from client_webapp.models import SelectionParam, McpServerConfig
+from client_webapp.models import McpServerConfig, ProviderModel
 
 import json
 import docker
@@ -37,20 +37,20 @@ def analyze_logs_api(request):
         mcp_servers = McpServerConfig.objects.all()
         agent = LogAnalyzerAgentWrapper(mcp_servers=list(mcp_servers))
 
-        if not SelectionParam.objects.exists():
-            return JsonResponse({'error': 'Non esiste una selezione del LLM nel pannello di admin.'}, status=400)
+        if not ProviderModel.objects.exists():
+            return JsonResponse({'error': 'Non esiste un provider di modelli LLM nel pannello di admin.'}, status=400)
 
-        selected_provider = SelectionParam.objects.filter(is_active=True)
+        selected_provider = ProviderModel.objects.filter(is_active=True)
         if not selected_provider.exists():
             return JsonResponse({'error': 'La selezione del LLM non è attiva. Attivarla dal pannello di admin. '}, status=400)
 
         selected_provider = selected_provider.first()
-        result = agent.analyze(provider=selected_provider.provider_selection.model_provider_id.lower().strip(),
-                      model=selected_provider.provider_selection.model_name.strip(),
+        result = agent.analyze(provider=selected_provider.model_provider_id.lower().strip(),
+                      model=selected_provider.model_name.strip(),
                       container_name=container,
                       log_level_choice=log_level.upper(),
-                      api_key=selected_provider.provider_selection.api_key.strip(),
-                      base_url=selected_provider.provider_selection.base_url)
+                      api_key=selected_provider.api_key.strip(),
+                      base_url=selected_provider.base_url)
         
         return JsonResponse({
             'success': True,
