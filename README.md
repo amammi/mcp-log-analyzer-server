@@ -120,7 +120,7 @@ Nel nostro caso, sarà necessario inserire l'indirizzo <code>http://host.docker.
 ## Utilizzo del client
 
 Terminata la configurazione, è ora possibile utilizzare il client. Per far ciò, se si è all'interno del pannello di amministrazione dell'applicazione si potrà cliccare direttamente nella voce di menu "**View Site**",
-altrimenti basterà collegarsi all'indirizzo <code>http://localhost:8000/client</code> ed in questo modo si verrà reindirizzati alla seguente schermata:
+altrimenti basterà collegarsi all'indirizzo <code>http://localhost:8000/</code> ed in questo modo si verrà reindirizzati alla seguente schermata:
 
 <div align="center">
     <img src="/docs/assets/homepage.png" alt="" width="500" style="display: block; margin: 0 auto"/>
