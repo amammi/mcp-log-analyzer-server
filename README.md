@@ -81,10 +81,10 @@ la **django_webapp**.
 
 ## Configurazione Applicazione
 
-Prima di utilizzare il client vanno, nell'ordine, settate 2 configurazioni nel pannello di amministrazione di Django:
+Prima di utilizzare il client vanno, nell'ordine, settate 2 configurazioni nel pannello di amministrazione dell'applicazione:
 
 1. Collegarsi all'indirizzo <code>http://localhost:8000/</code> e nella pagina iniziale, come si vede dalla figura, cliccare il tasto
-"Impostazioni". Si verrà reindirizzati al pannello di amministrazione di Django dove al primo accesso verranno chieste le credenziali
+"Impostazioni". Si verrà reindirizzati al pannello di amministrazione dell'applicazione dove al primo accesso verranno chieste le credenziali
    (se non sono state cambiate in fase di build nel docker-compose file, user e password sono admin:admin)
 
 <div align="center">
@@ -119,7 +119,7 @@ Nel nostro caso, sarà necessario inserire l'indirizzo <code>http://host.docker.
 
 ## Utilizzo del client
 
-Terminata la configurazione, è ora possibile utilizzare il client. Per far ciò, se si è all'interno del pannello di amministrazione di Django si potrà cliccare direttamente nella voce di menu "**View Site**",
+Terminata la configurazione, è ora possibile utilizzare il client. Per far ciò, se si è all'interno del pannello di amministrazione dell'applicazione si potrà cliccare direttamente nella voce di menu "**View Site**",
 altrimenti basterà collegarsi all'indirizzo <code>http://localhost:8000/client</code> ed in questo modo si verrà reindirizzati alla seguente schermata:
 
 <div align="center">
