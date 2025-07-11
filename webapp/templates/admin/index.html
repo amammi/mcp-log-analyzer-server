@@ -5,6 +5,8 @@
 
 {% block extrahead %}
     <link rel="shortcut icon" href="/static/favicon.ico"/>
+<script>document.documentElement.dataset.theme = 'light';
+localStorage.removeItem("theme")</script>
 {% endblock %}
 
 {% block title %}{{ site_title|default:_('Django site admin') }}{% endblock %}
