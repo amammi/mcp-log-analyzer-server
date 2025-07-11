@@ -79,7 +79,7 @@ Per chiamare questi endpoint basterà farlo, anche con body vuoto, attraverso cu
 Una volta generati i log con varie chiamate, possiamo cominciare ad utilizzare
 la **django_webapp**.
 
-## Configurazione Django
+## Configurazione Applicazione
 
 Prima di utilizzare il client vanno, nell'ordine, settate 2 configurazioni nel pannello di amministrazione di Django:
 
