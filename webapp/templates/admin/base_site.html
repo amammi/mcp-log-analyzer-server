@@ -1,22 +1,22 @@
 {% extends "admin/base_site.html" %}
 {% load static %}
 
-<html lang="en-us" dir="ltr" data-theme="light">
 {% block extrahead %}
-    <link rel="shortcut icon" href="/static/favicon.ico"/>
+<link rel="shortcut icon" href="/static/favicon.ico"/>
+<script>document.documentElement.setAttribute('data-theme', 'light');</script>
 {% endblock %}
+
 {% block extrastyle %}
-        <link rel="stylesheet" href="/static/admin/admin_site.css">
+<link rel="stylesheet" href="/static/admin/admin_site.css">
 {% endblock %}
 
 {% block title %}{{ site_title|default:_('Django site admin') }}{% endblock %}
 
 {% block branding %}
-    <h1 id="site-name">
-        <a href="{% url 'admin:index' %}">
-            <img src="{% static 'logo_v3.png' %}" height="70px"/>
-            <span style="padding-left: 12px; color: white">Admin Panel</span>
-        </a>
-    </h1>
+<h1 id="site-name">
+    <a href="{% url 'admin:index' %}">
+        <img src="{% static 'logo_v3.png' %}" height="70px"/>
+        <span style="padding-left: 12px; color: white">Admin Panel</span>
+    </a>
+</h1>
 {% endblock %}
-</html>
