@@ -1,0 +1,9 @@
+{% extends "admin/login.html" %}
+
+{% load static %}
+
+{% block extrahead %}
+    <link rel="shortcut icon" href="/static/favicon.ico"/>
+<script>document.documentElement.dataset.theme = 'light';
+localStorage.removeItem("theme")</script>
+{% endblock %}
