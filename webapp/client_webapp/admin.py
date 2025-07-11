@@ -5,7 +5,7 @@ from .models import ProviderModel, McpServerConfig
 # Register your models here.
 
 class LogAnalyzerAdminSite(admin.AdminSite):
-    site_url = "/client"
+    site_url = "/"
     site_header = "AI Log Analyzer"
     site_title = "AILA Admin Panel"
     index_template = "admin/index.html"
