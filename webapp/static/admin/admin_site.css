@@ -10,7 +10,7 @@ div.breadcrumbs {
     display: none;
 }
 
-html[data-theme="light"] {
+html[data-theme="light"], html[data-theme="auto"] {
     --secondary: #111b3b;
     --accent: white;
     --selected-row: linear-gradient(#ea580c, white);
