@@ -5,3 +5,58 @@
 div.breadcrumbs {
     background-color: #111b3b;
 }
+
+.theme-toggle {
+    display: none;
+}
+
+html[data-theme="light"] {
+    --secondary: #111b3b;
+    --accent: white;
+    --selected-row: linear-gradient(#ea580c, white);
+    --header-color: white;
+}
+
+input[type=submit].default, .submit-row input.default {
+    background: #ea580c;
+}
+
+.current-model a {
+    color: #111b3b;
+}
+
+.current-model a:hover {
+    color: white;
+}
+
+tr th a:not([aria-current]) {
+    color: #111b3b;
+}
+
+tr th a:not([aria-current]):hover {
+    color: #ea580c;
+}
+
+tr td a:not([aria-current]) {
+    color: #111b3b;
+}
+
+tr td a:not([aria-current]):hover {
+    color: #ea580c;
+}
+
+nav .breadcrumbs a:hover, div.breadcrumbs {
+    color: #ea580c;
+}
+
+table caption .section {
+    font-weight: bold;
+}
+table caption .section:hover {
+    text-decoration: none;
+    color: #ea580c;
+}
+
+.current-model .addlink:hover {
+    color: white;
+}
