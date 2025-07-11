@@ -51,7 +51,7 @@ e lanciare il comando:
 
 <div>
 
-<code>docker compose -d up </code>
+<code>docker compose up -d </code>
 </div>
 
 <div>
@@ -81,10 +81,17 @@ la **django_webapp**.
 
 ## Configurazione Django
 
-Prima di utilizzare il client vanno, nell'ordine, settate 3 configurazioni nel pannello di amministrazione di Django 
-(raggiungibile all'indirizzo: <code>http://localhost:8000/admin</code> con user e password di default admin:admin):
+Prima di utilizzare il client vanno, nell'ordine, settate 2 configurazioni nel pannello di amministrazione di Django:
 
-1. Aggingere un Provider Model: Per aggiungere un Provider Model, cliccare su "Add" nel menu a sinistra accanto alla relativa voce. 
+1. Collegarsi all'indirizzo <code>http://localhost:8000/</code> e nella pagina iniziale, come si vede dalla figura, cliccare il tasto
+"Impostazioni". Si verrà reindirizzati al pannello di amministrazione di Django dove al primo accesso verranno chieste le credenziali
+   (se non sono state cambiate in fase di build nel docker-compose file, user e password sono admin:admin)
+
+<div align="center">
+    <img src="/docs/assets/GoToSettings.png" alt="" width="500" style="display: block; margin: 0 auto"/>
+</div>
+
+2. Aggingere un **Provider Model**: Per aggiungere un Provider Model, cliccare su "Add" nel menu a sinistra accanto alla relativa voce. 
 Possibile scelta tra 3 diversi provider come Ollama, OpenAI e Anthropic. Di seguito 
 viene riportato l'esempio per OpenAI
 
@@ -94,18 +101,12 @@ viene riportato l'esempio per OpenAI
 
 Per ogni provider model sarà necessario esplicitare:
 
-- il provider
-- il modello di quel provider da utilizzare
-- la relativa API key (lasciare anche "ollama" che appare di default se il provider scelto è Ollama)
+- il **provider**
+- il **modello** di quel provider da utilizzare
+- la relativa **API key** (lasciare anche "ollama" che appare di default se il provider scelto è Ollama)
 - se si seleziona Ollama come provider bisogna valorizzare obbligatoriamente il campo **base url** con l'indirizzo del server ollama remoto, diversamente, 
 per gli altri provider questo campo non è necessario.
-
-2. Aggiungere un Selection Param: Questo setting è usato per selezionare quale tra i provider models deve essere utilizzato dal sistema. Per aggiungere un Selection Param, cliccare su "Add" nel menu a sinistra accanto alla relativa voce. 
-<div align="center">
-    <img src="/docs/assets/AddSelectionParams.png" alt="" width="500" style="display: block; margin: 0 auto"/>
-</div>
-
-Sarà necessario semplicemente selezionare dal menu a tendina i provider model disponibili, lasciare attiva la spunta "is active" e salvare.
+- il flag **is_active** per attivare quel provider per l'intera applicazione
 
 3. Configurare i dati dell'MCP server: Per aggiungere un MCP Server Config, cliccare su "Add" nel menu a sinistra accanto alla relativa voce.
 
@@ -118,17 +119,17 @@ Nel nostro caso, sarà necessario inserire l'indirizzo <code>http://host.docker.
 
 ## Utilizzo del client
 
-Terminata la configurazione, è ora possibile utilizzare il client. Per far ciò, è necessario da un browser collegarsi all'indirizzo
-<code>http://localhost:8000/client</code> ed in questo modo si verrà reindirizzati alla seguente schermata:
+Terminata la configurazione, è ora possibile utilizzare il client. Per far ciò, se si è all'interno del pannello di amministrazione di Django si potrà cliccare direttamente nella voce di menu "**View Site**",
+altrimenti basterà collegarsi all'indirizzo <code>http://localhost:8000/client</code> ed in questo modo si verrà reindirizzati alla seguente schermata:
 
 <div align="center">
     <img src="/docs/assets/homepage.png" alt="" width="500" style="display: block; margin: 0 auto"/>
 </div>
 
-Notiamo subito in alto a destra il numero dei container attivi, poi abbiamo l'area di sinistra dove sono presenti le 
-info da selezionare per l'analisi dei log come:
+Notiamo subito in alto a destra il numero dei container attivi ed la voce "Impostazioni" vista in precedenza per accedere al pannello di amministrazione, 
+poi, proseguendo verso il basso, abbiamo l'area di sinistra dove sono presenti le info da selezionare per l'analisi dei log come:
 
-- nome del container da analizzare
+- Nome del container da analizzare
 - Log level
 
 A destra invece troveremo la risposta del nostro LLM, dopo aver utilizzato gli opportuni tool del server MCP. 
