@@ -2,16 +2,15 @@
 {% load static %}
 
 {% block extrahead %}
+        {{ block.super }}
 <link rel="shortcut icon" href="/static/favicon.ico"/>
 {% endblock %}
+
 
 {% block extrastyle %}
 <link rel="stylesheet" href="/static/admin/admin_site.css">
 {% endblock %}
 
-{% block extrajs %}
-        <script>document.documentElement.setAttribute('data-theme', 'light');</script>
-{% endblock %}
 {% block title %}{{ site_title|default:_('Django site admin') }}{% endblock %}
 
 {% block branding %}
