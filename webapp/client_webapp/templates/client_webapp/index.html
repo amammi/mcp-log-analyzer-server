@@ -73,7 +73,7 @@
 
             const fetchActiveContainers = async () => {
                 try {
-                    const response = await fetch('/client/api/containers/');
+                    const response = await fetch('/api/containers/');
                     if (response.ok) {
                         const data = await response.json();
                         setActiveContainers(data.containers);
@@ -101,7 +101,7 @@
                 setAnalysisResult(null);
 
                 try {
-                    const response = await fetch('/client/api/analyze/', {
+                    const response = await fetch('/api/analyze/', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'

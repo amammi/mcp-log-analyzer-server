@@ -1,4 +1,6 @@
 from client_webapp.admin import admin_site
+from client_webapp.views import log_analyzer_view
+
 """
 URL configuration for log_analyzer_site project.
 
@@ -22,5 +24,6 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin_site.urls),
-    path("client/", include("client_webapp.urls"))
+    path("", log_analyzer_view),
+    path("api/", include("client_webapp.urls"))
 ]
