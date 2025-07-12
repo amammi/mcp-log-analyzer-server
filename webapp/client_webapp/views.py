@@ -1,3 +1,5 @@
+import pathlib
+
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 from django.http import JsonResponse
@@ -10,6 +12,8 @@ from client_webapp.models import McpServerConfig, ProviderModel
 import json
 import docker
 import logging
+
+from client_webapp.utils import create_analysis_pdf
 
 logger = logging.getLogger(__name__)
 
@@ -78,4 +82,24 @@ def get_active_containers(request):
         return JsonResponse({'containers': containers})
         
     except Exception as e:
+        return JsonResponse({'error': str(e)}, status=500)
+
+@csrf_exempt
+@require_http_methods(["POST"])
+def generate_report(request: HttpRequest):
+    try:
+        data = json.loads(request.body)
+        container = data.get('container_name')
+        log_level = data.get('log_level')
+        ai_response = data.get('ai_response')
+
+        logo_path = pathlib.Path('./static/logo_v3.png')
+        report_bytes = create_analysis_pdf(container_name=container, log_level=log_level, ai_response=ai_response, logo_path=f"{logo_path.absolute()}")
+
+        return HttpResponse(report_bytes, content_type="application/pdf", status=200, headers={'content-disposition': f'attachment; filename="report-{log_level}-{container}.pdf"', 'content-length': str(len(report_bytes))})
+
+    except json.JSONDecodeError:
+        return JsonResponse({'error': 'Dati richiesta non validi'}, status=400)
+    except Exception as e:
+        logger.exception(e, exc_info=True)
         return JsonResponse({'error': str(e)}, status=500)
