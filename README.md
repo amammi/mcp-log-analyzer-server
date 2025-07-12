@@ -132,7 +132,16 @@ poi, proseguendo verso il basso, abbiamo l'area di sinistra dove sono presenti l
 - Nome del container da analizzare
 - Log level
 
-A destra invece troveremo la risposta del nostro LLM, dopo aver utilizzato gli opportuni tool del server MCP. 
+A destra invece troveremo la risposta del nostro LLM, dopo aver utilizzato gli opportuni tool del server MCP.
+
+Subito dopo aver ricevuto la risposta dall'LLM tramite un apposito tasto che apparirà, sarà possibile scaricare un report 
+in PDF sulla richiesta di analisi appena effettuata come di seguito mostrato:
+
+<div align="center">
+    <img src="/docs/assets/PDFReportButton.png" alt="" width="500" style="display: block; margin: 0 auto"/>
+</div>
+
+
 Di seguito un breve video sul funzionamento:
 
 
