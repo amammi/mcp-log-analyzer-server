@@ -39,14 +39,19 @@ def analyze_logs_api(request):
             return JsonResponse({'error': 'Container e log level sono obbligatori'}, status=400)
 
         mcp_servers = McpServerConfig.objects.all()
-        agent = LogAnalyzerAgentWrapper(mcp_servers=list(mcp_servers))
+        selected_provider = ProviderModel.objects.filter(is_active=True)
+
+        if not mcp_servers or len(mcp_servers) == 0:
+            return JsonResponse({'error': 'La configurazione dei server MCP è obbligatoria.'}, status=400)
 
         if not ProviderModel.objects.exists():
             return JsonResponse({'error': 'Non esiste un provider di modelli LLM nel pannello di admin.'}, status=400)
 
-        selected_provider = ProviderModel.objects.filter(is_active=True)
         if not selected_provider.exists():
-            return JsonResponse({'error': 'La selezione del LLM non è attiva. Attivarla dal pannello di admin. '}, status=400)
+            return JsonResponse({'error': 'La selezione del LLM non è attiva. Attivarla dal pannello di admin. '},
+                                status=400)
+
+        agent = LogAnalyzerAgentWrapper(mcp_servers=list(mcp_servers))
 
         selected_provider = selected_provider.first()
         result = agent.analyze(provider=selected_provider.model_provider_id.lower().strip(),

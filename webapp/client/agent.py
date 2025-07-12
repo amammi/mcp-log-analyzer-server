@@ -19,10 +19,6 @@ logger = logging.getLogger(__name__)
 
 class LogAnalyzerAgentWrapper:
     def __init__(self, mcp_servers: list[McpServerConfig] = None):
-
-        if len(mcp_servers) == 0:
-            raise ValueError("No MCP servers configured.")
-
         self.workbenches: list[McpWorkbench] = []
         for server in mcp_servers:
             match server.connection_type:
