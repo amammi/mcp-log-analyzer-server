@@ -136,7 +136,8 @@ A destra invece troveremo la risposta del nostro LLM, dopo aver utilizzato gli o
 Di seguito un breve video sul funzionamento:
 
 
-[output.webm](https://github.com/user-attachments/assets/1f1dd31c-a067-42bf-9835-303ac132ae74)
+
+[demo.webm](https://github.com/user-attachments/assets/f4ce6f79-88d6-4fc4-b6f1-48fc604a829f)
 
 
 
