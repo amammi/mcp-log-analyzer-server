@@ -16,147 +16,202 @@
         .animate-spin {
             animation: spin 1s linear infinite;
         }
+
         @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
         }
+
         .animate-pulse {
             animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
         }
+
         .animate-pulse-delay-1 {
             animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
             animation-delay: 0.2s;
         }
+
         .animate-pulse-delay-2 {
             animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
             animation-delay: 0.4s;
         }
+
         @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: .5; }
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: .5;
+            }
         }
     </style>
 </head>
 <body>
-    <div id="root"></div>
+<div id="root"></div>
 
-    <script type="text/babel">
-        const { useState, useEffect } = React;
-        const Search = () => <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>;
-        const Activity = () => <svg className="w-5 h-5 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>;
-        const Brain = () => <svg className="w-5 h-5 text-white-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /></svg>;
-        const Container = () => <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" /></svg>;
-        const CheckCircle = () => <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>;
-        const XCircle = () => <svg className="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>;
-        const Settings = () => <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round"> <circle cx="12" cy="12" r="3" /> <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h.06a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09c0 .66.39 1.26 1 1.51a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82v.06c.27.61.85 1 1.51 1H21a2 2 0 1 1 0 4h-.09c-.66 0-1.26.39-1.51 1z" /> </svg>
+<script type="text/babel">
+    const {useState, useEffect} = React;
+    const Search = () => <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+    </svg>;
+    const Activity = () => <svg className="w-5 h-5 text-orange-600" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+              d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+    </svg>;
+    const Brain = () => <svg className="w-5 h-5 text-white-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+              d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+    </svg>;
+    const Container = () => <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+              d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+    </svg>;
+    const CheckCircle = () => <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor"
+                                   viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+              d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+    </svg>;
+    const XCircle = () => <svg className="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+              d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+    </svg>;
+    const Settings = () => <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="3"/>
+        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h.06a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09c0 .66.39 1.26 1 1.51a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82v.06c.27.61.85 1 1.51 1H21a2 2 0 1 1 0 4h-.09c-.66 0-1.26.39-1.51 1z"/>
+    </svg>
 
 
-        const LogAnalyzerApp = () => {
-            const [selectedContainer, setSelectedContainer] = useState('');
-            const [selectedLogLevel, setSelectedLogLevel] = useState('');
-            const [isAnalyzing, setIsAnalyzing] = useState(false);
-            const [analysisResult, setAnalysisResult] = useState(null);
-            const [error, setError] = useState(null);
-            const [activeContainers, setActiveContainers] = useState([]);
-            const [loadingContainers, setLoadingContainers] = useState(true);
+    const LogAnalyzerApp = () => {
+        const [selectedContainer, setSelectedContainer] = useState('');
+        const [selectedLogLevel, setSelectedLogLevel] = useState('');
+        const [isAnalyzing, setIsAnalyzing] = useState(false);
+        const [analysisResult, setAnalysisResult] = useState(null);
+        const [error, setError] = useState(null);
+        const [activeContainers, setActiveContainers] = useState([]);
+        const [loadingContainers, setLoadingContainers] = useState(true);
 
-            const logLevels = [
-                { value: 'error', label: 'Error', color: 'text-red-600', icon: XCircle },
-                { value: 'info', label: 'Info', color: 'text-blue-600', icon: CheckCircle },
-                { value: 'debug', label: 'Debug', color: 'text-gray-600', icon: Activity }
-            ];
+        const logLevels = [
+            {value: 'error', label: 'Error', color: 'text-red-600', icon: XCircle},
+            {value: 'info', label: 'Info', color: 'text-blue-600', icon: CheckCircle},
+            {value: 'debug', label: 'Debug', color: 'text-gray-600', icon: Activity}
+        ];
 
-            // Carica i container attivi all'avvio
-            useEffect(() => {
-                fetchActiveContainers();
-            }, []);
+        // Carica i container attivi all'avvio
+        useEffect(() => {
+            fetchActiveContainers();
+        }, []);
 
-            const fetchActiveContainers = async () => {
-                try {
-                    const response = await fetch('/api/containers/');
-                    if (response.ok) {
-                        const data = await response.json();
-                        setActiveContainers(data.containers);
-                    } else {
-                        console.error('Errore nel caricamento dei container');
-                    }
-                } catch (error) {
-                    console.error('Errore nella richiesta:', error);
-                    setError(error)
-                } finally {
-                    setLoadingContainers(false);
-                }
-            };
-
-            const handleSubmit = async (e) => {
-                e.preventDefault();
-                
-                if (!selectedContainer || !selectedLogLevel) {
-                    setError('Seleziona un container e un livello di log');
-                    return;
-                }
-
-                setError(null);
-                setIsAnalyzing(true);
-                setAnalysisResult(null);
-
-                try {
-                    const response = await fetch('/api/analyze/', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            container: selectedContainer,
-                            log_level: selectedLogLevel
-                        })
-                    });
-
+        const fetchActiveContainers = async () => {
+            try {
+                const response = await fetch('/api/containers/');
+                if (response.ok) {
                     const data = await response.json();
-
-                    if (response.ok) {
-                        setAnalysisResult(data.result);
-                    } else {
-                        setError(data.error || 'Errore durante l\'analisi');
-                    }
-                } catch (err) {
-                    setError('Errore di connessione. Riprova più tardi.');
-                } finally {
-                    setIsAnalyzing(false);
+                    setActiveContainers(data.containers);
+                } else {
+                    console.error('Errore nel caricamento dei container');
                 }
-            };
+            } catch (error) {
+                console.error('Errore nella richiesta:', error);
+                setError(error)
+            } finally {
+                setLoadingContainers(false);
+            }
+        };
 
-            const handleReset = () => {
-                setSelectedContainer('');
-                setSelectedLogLevel('');
-                setAnalysisResult(null);
-                setError(null);
-            };
+        const handleSubmit = async (e) => {
+            e.preventDefault();
 
-            // Funzione per ottenere il CSRF token
-            const getCookie = (name) => {
-                let cookieValue = null;
-                if (document.cookie && document.cookie !== '') {
-                    const cookies = document.cookie.split(';');
-                    for (let i = 0; i < cookies.length; i++) {
-                        const cookie = cookies[i].trim();
-                        if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                            break;
-                        }
-                    }
+            if (!selectedContainer || !selectedLogLevel) {
+                setError('Seleziona un container e un livello di log');
+                return;
+            }
+
+            setError(null);
+            setIsAnalyzing(true);
+            setAnalysisResult(null);
+
+            try {
+                const response = await fetch('/api/analyze/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        container: selectedContainer,
+                        log_level: selectedLogLevel
+                    })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    setAnalysisResult(data.result);
+                } else {
+                    setError(data.error || 'Errore durante l\'analisi');
                 }
-                return cookieValue;
-            };
+            } catch (err) {
+                setError('Errore di connessione. Riprova più tardi.');
+            } finally {
+                setIsAnalyzing(false);
+            }
+        };
 
-            return (
+        const handleReset = () => {
+            setSelectedContainer('');
+            setSelectedLogLevel('');
+            setAnalysisResult(null);
+            setError(null);
+        };
+
+        const handleDownload = async () => {
+            const response = await fetch('api/report/', {
+                method: "POST",
+                body: JSON.stringify({
+                    'container_name': selectedContainer,
+                    'log_level': selectedLogLevel,
+                    'ai_response': analysisResult
+                }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            const blob = await response.blob();
+            const url = URL.createObjectURL(blob);
+            let filename = "analisi_risultati.pdf";
+
+            const contentDisposition = response.headers.get("Content-Disposition");
+            if (contentDisposition) {
+                const filenameMatch = contentDisposition.match(/filename="(.+)"/);
+                if (filenameMatch) {
+                    filename = filenameMatch[1];
+                }
+            }
+
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+
+        return (
                 <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
                     {/* Header */}
                     <div className="bg-white shadow-sm border-b border-gray-200">
                         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                             <div className="flex items-center justify-between h-36">
                                 <div className="flex items-center space-x-3">
-                                    <img className="rounded-md" src="/static/logo_v3.png" width={100} height={100}  alt="AI Log Analyzer Logo"/>
+                                    <img className="rounded-md" src="/static/logo_v3.png" width={100} height={100}
+                                         alt="AI Log Analyzer Logo"/>
                                     <div>
                                         <h1 className="text-xl font-bold text-gray-900">AI Log Analyzer</h1>
                                         <p className="text-sm text-gray-600">Analisi intelligente dei log container</p>
@@ -164,9 +219,9 @@
                                 </div>
                                 <div className="flex items-center space-x-2 text-sm text-gray-500">
                                     <a href="/admin" className="inline-flex items-center gap-2 pr-2">
-                                        <Settings className="h-4 w-8" /> <span>Impostazioni</span>
+                                        <Settings className="h-4 w-8"/> <span>Impostazioni</span>
                                     </a>
-                                    <Container className="h-4 w-4" />
+                                    <Container className="h-4 w-4"/>
                                     <span>{loadingContainers ? 'Caricamento...' : `${activeContainers.length} container attivi`}</span>
                                 </div>
                             </div>
@@ -180,30 +235,29 @@
                                 <div className="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden">
                                     <div className="bg-gradient-to-r from-slate-900 to-slate-900 px-6 py-4">
                                         <h2 className="text-lg font-semibold text-white flex items-center">
-                                            <Search className="h-5 w-5 mr-2" />
+                                            <Search className="h-5 w-5 mr-2"/>
                                             <span className="pl-2">Configurazione Analisi</span>
                                         </h2>
                                     </div>
-                                    
+
                                     <div className="p-6 space-y-6">
                                         {/* Container Selection */}
                                         <div>
                                             <label className="block text-sm font-medium text-gray-700 mb-2">
                                                 Seleziona Container
                                             </label>
-                                            <select 
-                                                value={selectedContainer} 
-                                                onChange={(e) => setSelectedContainer(e.target.value)}
-                                                disabled={loadingContainers}
-                                                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors disabled:opacity-50"
-                                            >
+                                            <select
+                                                    value={selectedContainer}
+                                                    onChange={(e) => setSelectedContainer(e.target.value)}
+                                                    disabled={loadingContainers}
+                                                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors disabled:opacity-50">
                                                 <option value="">
                                                     {loadingContainers ? 'Caricamento container...' : 'Scegli un container...'}
                                                 </option>
                                                 {activeContainers.map(container => (
-                                                    <option key={container.id} value={container.name}>
-                                                        {container.name}
-                                                    </option>
+                                                        <option key={container.id} value={container.name}>
+                                                            {container.name}
+                                                        </option>
                                                 ))}
                                             </select>
                                         </div>
@@ -217,18 +271,20 @@
                                                 {logLevels.map((level) => {
                                                     const IconComponent = level.icon;
                                                     return (
-                                                        <label key={level.value} className="flex items-center p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors">
-                                                            <input
-                                                                type="radio"
-                                                                name="logLevel"
-                                                                value={level.value}
-                                                                checked={selectedLogLevel === level.value}
-                                                                onChange={(e) => setSelectedLogLevel(e.target.value)}
-                                                                className="mr-3 text-blue-600 focus:ring-blue-500"
-                                                            />
-                                                            <IconComponent className={`h-4 w-4 mr-2 ${level.color}`} />
-                                                            <span className="text-sm font-medium text-gray-700 pl-2">{level.label}</span>
-                                                        </label>
+                                                            <label key={level.value}
+                                                                   className="flex items-center p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors">
+                                                                <input
+                                                                        type="radio"
+                                                                        name="logLevel"
+                                                                        value={level.value}
+                                                                        checked={selectedLogLevel === level.value}
+                                                                        onChange={(e) => setSelectedLogLevel(e.target.value)}
+                                                                        className="mr-3 text-blue-600 focus:ring-blue-500"
+                                                                />
+                                                                <IconComponent
+                                                                        className={`h-4 w-4 mr-2 ${level.color}`}/>
+                                                                <span className="text-sm font-medium text-gray-700 pl-2">{level.label}</span>
+                                                            </label>
                                                     );
                                                 })}
                                             </div>
@@ -236,24 +292,24 @@
 
                                         {/* Error Message */}
                                         {error && (
-                                            <div className="p-3 bg-red-50 border border-red-200 rounded-lg">
-                                                <p className="text-sm text-red-700">{error}</p>
-                                            </div>
+                                                <div className="p-3 bg-red-50 border border-red-200 rounded-lg">
+                                                    <p className="text-sm text-red-700">{error}</p>
+                                                </div>
                                         )}
 
                                         {/* Submit Button */}
                                         <div className="flex space-x-3">
                                             <button
-                                                onClick={handleSubmit}
-                                                disabled={isAnalyzing || !selectedContainer || !selectedLogLevel || loadingContainers}
-                                                className="flex-1 bg-gradient-to-r from-orange-600 to-orange-600 text-white py-3 px-4 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 font-medium"
+                                                    onClick={handleSubmit}
+                                                    disabled={isAnalyzing || !selectedContainer || !selectedLogLevel || loadingContainers}
+                                                    className="flex-1 bg-gradient-to-r from-orange-600 to-orange-600 text-white py-3 px-4 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 font-medium"
                                             >
                                                 {isAnalyzing ? 'Analizzando...' : 'Avvia Analisi'}
                                             </button>
-                                            
+
                                             <button
-                                                onClick={handleReset}
-                                                className="px-4 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+                                                    onClick={handleReset}
+                                                    className="px-4 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
                                             >
                                                 Reset
                                             </button>
@@ -265,43 +321,61 @@
                             {/* Results Panel */}
                             <div className="lg:col-span-2">
                                 <div className="rounded-xl shadow-lg border-t border-t-gray-200 bg-white min-h-[469px]">
-                                    <div className="rounded-t-xl shadow-lg border-t border-t-gray-200 bg-gradient-to-r from-slate-900 to-slate-900 px-6 py-4">
+                                    <div className="rounded-t-xl shadow-lg border-t border-t-gray-200 bg-gradient-to-r from-slate-900 to-slate-900 px-6 py-4 flex items-center justify-between">
                                         <h2 className="text-lg font-semibold text-white flex items-center">
-                                            <span><Brain className="h-5 w-5 mr-2" /></span>
-                                             <span className="pl-2"> Risultati Analisi AI</span>
+                                            <span><Brain className="h-5 w-5 mr-2"/></span>
+                                            <span className="pl-2"> Risultati Analisi AI</span>
                                         </h2>
+                                        {analysisResult && !isAnalyzing &&
+                                                <button
+                                                        onClick={handleDownload}
+                                                        className="flex items-center gap-2 px-4 py-2 bg-orange-600 text-white rounded-lg transition-colors duration-200 text-sm font-medium">
+                                                    <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none"
+                                                         stroke="currentColor" strokeWidth="2" strokeLinecap="round"
+                                                         strokeLinejoin="round">
+                                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                                        <polyline points="7,10 12,15 17,10"/>
+                                                        <line x1="12" y1="15" x2="12" y2="3"/>
+                                                    </svg>
+                                                    PDF report
+                                                </button>
+                                        }
+
                                     </div>
-                                    
+
                                     <div className="p-6">
                                         {!analysisResult && !isAnalyzing && (
-                                            <div className="flex flex-col items-center justify-center h-64 text-gray-500">
-                                                <Activity className="h-12 w-12 mb-4 text-gray-300" />
-                                                <p className="text-lg font-medium">Nessuna analisi avviata</p>
-                                                <p className="text-sm text-center mt-2">
-                                                    Seleziona un container e un livello di log per iniziare l'analisi
-                                                </p>
-                                            </div>
+                                                <div className="flex flex-col items-center justify-center h-64 text-gray-500">
+                                                    <Activity className="h-12 w-12 mb-4 text-gray-300"/>
+                                                    <p className="text-lg font-medium">Nessuna analisi avviata</p>
+                                                    <p className="text-sm text-center mt-2">
+                                                        Seleziona un container e un livello di log per iniziare
+                                                        l'analisi
+                                                    </p>
+                                                </div>
                                         )}
 
                                         {analysisResult && (
-                                            <div className="space-y-4">
-                                                <div className="p-4 bg-gradient-to-r from-green-50 to-blue-50 rounded-lg border border-green-200">
-                                                    <div className="flex items-center mb-2">
-                                                        <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
-                                                        <span className="font-medium text-green-800">Analisi completata</span>
+                                                <div className="space-y-4">
+                                                    <div className="p-4 bg-gradient-to-r from-green-50 to-blue-50 rounded-lg border border-green-200">
+                                                        <div className="flex items-center mb-2">
+                                                            <CheckCircle className="h-5 w-5 text-green-600 mr-2"/>
+                                                            <span className="font-medium text-green-800">Analisi completata</span>
+                                                        </div>
+                                                        <p className="text-sm text-green-700">
+                                                            Container: <span
+                                                                className="font-mono bg-green-100 px-2 py-1 rounded">{selectedContainer}</span> |
+                                                            Log Level: <span
+                                                                className="font-mono bg-green-100 px-2 py-1 rounded ml-2">{selectedLogLevel}</span>
+                                                        </p>
                                                     </div>
-                                                    <p className="text-sm text-green-700">
-                                                        Container: <span className="font-mono bg-green-100 px-2 py-1 rounded">{selectedContainer}</span> | 
-                                                        Log Level: <span className="font-mono bg-green-100 px-2 py-1 rounded ml-2">{selectedLogLevel}</span>
-                                                    </p>
-                                                </div>
-                                                
-                                                <div className="bg-gray-50 rounded-lg p-6 border border-gray-200">
+
+                                                    <div className="bg-gray-50 rounded-lg p-6 border border-gray-200">
                                                     <pre className="whitespace-pre-wrap text-sm text-gray-800 font-mono leading-relaxed">
                                                         {analysisResult}
                                                     </pre>
+                                                    </div>
                                                 </div>
-                                            </div>
                                         )}
                                     </div>
                                 </div>
@@ -311,32 +385,32 @@
 
                     {/* Loading Overlay */}
                     {isAnalyzing && (
-                        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-                            <div className="bg-white rounded-xl p-8 max-w-md mx-4 shadow-2xl">
-                                <div className="text-center">
-                                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-                                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                                        🤖 Analisi in corso...
-                                    </h3>
-                                    <p className="text-gray-600">
-                                        L'intelligenza artificiale sta analizzando i log del container. 
-                                        Questo potrebbe richiedere qualche istante.
-                                    </p>
-                                    <div className="mt-4 flex items-center justify-center space-x-2">
-                                        <div className="w-2 h-2 bg-blue-600 rounded-full animate-pulse"></div>
-                                       <div className="w-2 h-2 bg-blue-600 rounded-full animate-pulse animate-pulse-delay-1"></div>
-                                       <div className="w-2 h-2 bg-blue-600 rounded-full animate-pulse animate-pulse-delay-2"></div>
+                            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                                <div className="bg-white rounded-xl p-8 max-w-md mx-4 shadow-2xl">
+                                    <div className="text-center">
+                                        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+                                        <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                                            🤖 Analisi in corso...
+                                        </h3>
+                                        <p className="text-gray-600">
+                                            L'intelligenza artificiale sta analizzando i log del container.
+                                            Questo potrebbe richiedere qualche istante.
+                                        </p>
+                                        <div className="mt-4 flex items-center justify-center space-x-2">
+                                            <div className="w-2 h-2 bg-blue-600 rounded-full animate-pulse"></div>
+                                            <div className="w-2 h-2 bg-blue-600 rounded-full animate-pulse animate-pulse-delay-1"></div>
+                                            <div className="w-2 h-2 bg-blue-600 rounded-full animate-pulse animate-pulse-delay-2"></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
                     )}
                 </div>
-            );
-        };
+        );
+    };
 
-        // Render dell'app
-        ReactDOM.createRoot(document.getElementById('root')).render(<LogAnalyzerApp />);
-    </script>
+    // Render dell'app
+    ReactDOM.createRoot(document.getElementById('root')).render(<LogAnalyzerApp/>);
+</script>
 </body>
 </html>
