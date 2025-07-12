@@ -132,11 +132,22 @@ poi, proseguendo verso il basso, abbiamo l'area di sinistra dove sono presenti l
 - Nome del container da analizzare
 - Log level
 
-A destra invece troveremo la risposta del nostro LLM, dopo aver utilizzato gli opportuni tool del server MCP. 
+A destra invece troveremo la risposta del nostro LLM, dopo aver utilizzato gli opportuni tool del server MCP.
+
+Subito dopo aver ricevuto la risposta dall'LLM tramite un apposito tasto che apparirà, sarà possibile scaricare un report 
+in PDF sulla richiesta di analisi appena effettuata come di seguito mostrato:
+
+<div align="center">
+    <img src="/docs/assets/PDFReportButton.png" alt="" width="500" style="display: block; margin: 0 auto"/>
+</div>
+
+
 Di seguito un breve video sul funzionamento:
 
 
-[output.webm](https://github.com/user-attachments/assets/1f1dd31c-a067-42bf-9835-303ac132ae74)
+
+
+[demo.webm](https://github.com/user-attachments/assets/34ae9f4e-3362-4678-a2a6-bbff58313c03)
 
 
 
