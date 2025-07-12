@@ -137,7 +137,8 @@ Di seguito un breve video sul funzionamento:
 
 
 
-[demo.webm](https://github.com/user-attachments/assets/f4ce6f79-88d6-4fc4-b6f1-48fc604a829f)
+
+[demo.webm](https://github.com/user-attachments/assets/34ae9f4e-3362-4678-a2a6-bbff58313c03)
 
 
 
