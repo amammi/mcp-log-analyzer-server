@@ -8,7 +8,7 @@ from mcp.server.fastmcp import FastMCP
 from decorators import log_tool_call
 
 
-mcp = FastMCP("MCP Docker Log Server", host="0.0.0.0", port=8080)
+mcp = FastMCP("MCP Docker Log Server", host="0.0.0.0", port=8080, log_level="DEBUG")
 logger = get_logger(__name__)
 
 @mcp.tool()
