@@ -9,6 +9,9 @@ from django.views.decorators.http import require_http_methods
 from client.agent import LogAnalyzerAgentWrapper
 from client_webapp.models import McpServerConfig, ProviderModel
 
+from asgiref.sync import sync_to_async
+
+
 import json
 import docker
 import logging
@@ -16,6 +19,14 @@ import logging
 from client_webapp.utils import create_analysis_pdf
 
 logger = logging.getLogger(__name__)
+
+@sync_to_async
+def get_mcp_server_confs():
+    return list(McpServerConfig.objects.all())
+
+@sync_to_async
+def get_active_provider_model_confs():
+    return ProviderModel.objects.filter(is_active=True)
 
 # Create your views here.
 def index(request: HttpRequest):
@@ -28,7 +39,7 @@ def log_analyzer_view(request):
 
 @csrf_exempt
 @require_http_methods(["POST"])
-def analyze_logs_api(request):
+async def analyze_logs_api(request):
     """API endpoint per l'analisi dei log"""
     try:
         data = json.loads(request.body)
@@ -38,23 +49,23 @@ def analyze_logs_api(request):
         if not container or not log_level:
             return JsonResponse({'error': 'Container e log level sono obbligatori'}, status=400)
 
-        mcp_servers = McpServerConfig.objects.all()
-        selected_provider = ProviderModel.objects.filter(is_active=True)
+        mcp_servers = await get_mcp_server_confs()
+        selected_provider = await get_active_provider_model_confs()
 
         if not mcp_servers or len(mcp_servers) == 0:
             return JsonResponse({'error': 'La configurazione dei server MCP è obbligatoria.'}, status=400)
 
-        if not ProviderModel.objects.exists():
+        if not (await ProviderModel.objects.aexists()):
             return JsonResponse({'error': 'Non esiste un provider di modelli LLM nel pannello di admin.'}, status=400)
 
-        if not selected_provider.exists():
+        if not (await selected_provider.aexists()):
             return JsonResponse({'error': 'La selezione del LLM non è attiva. Attivarla dal pannello di admin. '},
                                 status=400)
 
-        agent = LogAnalyzerAgentWrapper(mcp_servers=list(mcp_servers))
+        agent = LogAnalyzerAgentWrapper(mcp_servers=mcp_servers)
 
-        selected_provider = selected_provider.first()
-        result = agent.analyze(provider=selected_provider.model_provider_id.lower().strip(),
+        selected_provider = await selected_provider.afirst()
+        result = await agent.analyze(provider=selected_provider.model_provider_id.lower().strip(),
                       model=selected_provider.model_name.strip(),
                       container_name=container,
                       log_level_choice=log_level.upper(),

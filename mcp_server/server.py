@@ -65,7 +65,7 @@ def get_container_level_logs(container_name: str, level: Literal["INFO", "DEBUG"
 @mcp.tool("get_container_error_level_logs")
 @log_tool_call
 def get_container_error_level_logs(container_name: str):
-    """Given the container name and a log level, extracts all its error logs for that level with stacktraces. This method doesn't extract other levels like INFO or DEBUG.
+    """Given the container name, extracts all its error logs for that level with stacktraces. This method doesn't extract other levels like INFO or DEBUG.
     Args:
         - container_name: The container name
     """
