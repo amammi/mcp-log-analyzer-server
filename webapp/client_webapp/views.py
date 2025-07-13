@@ -59,7 +59,7 @@ def analyze_logs_api(request):
                       container_name=container,
                       log_level_choice=log_level.upper(),
                       api_key=selected_provider.api_key.strip(),
-                      base_url=selected_provider.base_url)
+                      base_url=selected_provider.base_url.strip())
         
         return JsonResponse({
             'success': True,

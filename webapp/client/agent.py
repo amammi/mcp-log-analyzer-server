@@ -36,7 +36,7 @@ class LogAnalyzerAgentWrapper:
         base_url = base_url or os.getenv("CUSTOM_MODEL_BASE_URL")
         match provider:
             case 'ollama':
-                model_client = OllamaChatCompletionClient(host=base_url, model=model)
+                model_client = OllamaChatCompletionClient(host=base_url, api_key=api_key, model=model, temperature=0.0, model_info={'function_calling': True, 'family': 'unknown', 'json_output': True, 'vision': False, 'structured_output': True })
 
             case 'anthropic':
                 model_client = AnthropicChatCompletionClient(model=model, api_key=api_key, temperature=0.0)
@@ -52,6 +52,7 @@ class LogAnalyzerAgentWrapper:
     async def _analyze(self, provider: str, model: str, container_name: str, log_level_choice: str, api_key: str = None, base_url: str = None) -> str | None:
 
         server_params = self.workbenches[0].server_params
+        print(server_params.url)
         async with Client(server_params.url) as mcp_client :
 
             try:
