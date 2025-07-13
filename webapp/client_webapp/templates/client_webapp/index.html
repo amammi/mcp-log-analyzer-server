@@ -72,6 +72,7 @@
         const [error, setError] = useState(null);
         const [activeContainers, setActiveContainers] = useState([]);
         const [loadingContainers, setLoadingContainers] = useState(true);
+        const [generatingReport, setGeneratingReport] = useState(false);
 
         const logLevels = [
             {value: 'error', label: 'Error', color: 'text-red-600', icon: XCircle},
@@ -147,6 +148,7 @@
         };
 
         const handleDownload = async () => {
+            setGeneratingReport(true);
             const response = await fetch('api/report/', {
                 method: "POST",
                 body: JSON.stringify({
@@ -176,6 +178,7 @@
             a.download = filename;
             a.click();
             URL.revokeObjectURL(url);
+            setGeneratingReport(false)
         }
 
 
@@ -365,6 +368,26 @@
                                         <p className="text-gray-600">
                                             L'intelligenza artificiale sta analizzando i log del container.
                                             Questo potrebbe richiedere qualche istante.
+                                        </p>
+                                        <div className="mt-4 flex items-center justify-center space-x-2">
+                                            <div className="w-2 h-2 bg-blue-600 rounded-full animate-pulse"></div>
+                                            <div className="w-2 h-2 bg-blue-600 rounded-full animate-pulse animate-pulse-delay-1"></div>
+                                            <div className="w-2 h-2 bg-blue-600 rounded-full animate-pulse animate-pulse-delay-2"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    )}
+                    {generatingReport && (
+                            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                                <div className="bg-white rounded-xl p-8 max-w-md mx-4 shadow-2xl">
+                                    <div className="text-center">
+                                        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+                                        <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                                            📝 Generazione report in corso...
+                                        </h3>
+                                        <p className="text-gray-600">
+                                            Il report sarà pronto a momenti, per favore non aggiornare la pagina
                                         </p>
                                         <div className="mt-4 flex items-center justify-center space-x-2">
                                             <div className="w-2 h-2 bg-blue-600 rounded-full animate-pulse"></div>
