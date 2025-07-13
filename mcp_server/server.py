@@ -11,14 +11,15 @@ from decorators import log_tool_call
 mcp = FastMCP("MCP Docker Log Server", host="0.0.0.0", port=8080)
 logger = get_logger(__name__)
 
-@mcp.tool()
+@mcp.tool("get_all_container_names")
 @log_tool_call
 def get_all_containers():
     """Get a list of all running containers names"""
     try:
         docker_client = docker.from_env()
         return list(map(lambda container: container.name, docker_client.containers.list()))
-    except Exception:
+    except Exception as e:
+        logger.exception(e, exc_info=True)
         return "There was an exception during the connection to local Docker instance."
 
 @mcp.tool("get_all_container_logs")
