@@ -19,7 +19,7 @@ su diversi livelli dell'applicazione che vive dentro quel container attraverso l
 Il progetto si compone di 3 moduli:
 
 - **mcp_server**: con all'interno il codice sorgente del server MCP che permette l'estrazione dei log dai container docker. Per costruire tale server MCP è stata utilizzata la libreria Python FastMCP.
-- **app**: una piccola FastAPI app costruita per generare log che alcuni dei tools presenti nel server MCP dovranno estrarre su tre livelli:
+- **app**: una piccola FastAPI app costruita per generare log che alcuni dei tools presenti nel server MCP (in particolare **get_container_error_level_logs** e **get_container_level_logs_except_error**) dovranno estrarre su tre livelli:
   - INFO
   - DEBUG
   - ERROR
