@@ -8,3 +8,4 @@ openai>=1.93.0
 pyautogen>=0.9
 fastmcp>=2.10.1
 reportlab>=4.4.2
+tiktoken>=0.9.0

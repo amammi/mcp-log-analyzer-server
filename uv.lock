@@ -1,5 +1,5 @@
 version = 1
-revision = 2
+revision = 3
 requires-python = ">=3.13"
 
 [[package]]
@@ -764,6 +764,7 @@ dependencies = [
     { name = "openai" },
     { name = "pyautogen" },
     { name = "reportlab" },
+    { name = "tiktoken" },
     { name = "uvicorn" },
 ]
 
@@ -783,6 +784,7 @@ requires-dist = [
     { name = "openai", specifier = ">=1.93.0" },
     { name = "pyautogen", specifier = ">=0.9" },
     { name = "reportlab", specifier = ">=4.4.2" },
+    { name = "tiktoken", specifier = ">=0.9.0" },
     { name = "uvicorn", specifier = ">=0.34.3" },
 ]
 
